@@ -7,6 +7,8 @@ import { Toaster } from "~/components/ui/sonner";
 import { TRPCReactProvider } from "~/trpc/react";
 import { HydrateClient } from "~/trpc/server";
 import { SessionProvider } from "next-auth/react";
+import SWRegister from "~/app/_components/SWRegister";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Без градски - намери превоз",
@@ -30,6 +32,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  appleWebApp: {
+    capable: true,
+    title: "Без градски",
+    startupImage: "/pwa-logox192.png",
+    statusBarStyle: "default",
+  },
 };
 
 const geist = Geist({
@@ -47,6 +55,7 @@ export default function RootLayout({
           <HydrateClient>
             <SessionProvider>
               <Toaster />
+              <SWRegister />
               <main className="h-full w-full">{children}</main>
             </SessionProvider>
           </HydrateClient>
